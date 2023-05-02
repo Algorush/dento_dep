@@ -1,0 +1,34 @@
+version: '3.1'
+services:
+  #################################
+  #  Main app container           #
+  #################################
+  app:
+    restart: 'always'
+    build:
+      context: .
+      dockerfile: .docker/prod/Dockerfile
+    image: webmagicagency/dental3d
+    ports:
+      - "80:80"
+      - "443:443"
+    command: bash -c "./start.sh" # run initial tasks
+    working_dir: "/srv/app"
+    volumes:
+      - ".ssl/.ssl:/srv/ssl"
+      - ".ssl/.letsencrypt:/etc/letsencrypt"
+      - ".ssl/.lib-letsencrypt/:/var/lib/letsencrypt"
+
+  #################################
+  #  Database container           #
+  #################################
+  mysql:
+    restart: 'always'
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: homestead
+      MYSQL_USER: homestead
+      MYSQL_PASSWORD: secret
+    volumes:
+      -  ".mysql:/var/lib/mysql"
