@@ -337,8 +337,6 @@ $(document).ready(function () {
 
     const promises1 = [...new Array(options.pathLower.length)].map(
       async (number, i) => {
-        console.log(number, i)
-        console.log(options.pathLower[i].fileInd)
         const path = options.pathLower[i].fileName;
         return new Promise((resolve) => {
           //loadersLow[i].load(path, resolve);
@@ -361,7 +359,6 @@ $(document).ready(function () {
         options.pathLower.length,
         result.length
       );
-      console.log(lower_result, upper_result)
       loadAnimation(
         lower_result,
         animations.lower,
@@ -377,8 +374,6 @@ $(document).ready(function () {
         options.pathUp
       );
       centeredModels();
-      console.log(options);
-      console.log(modelLower);
       render();
       setGrid(jawBox);
 
@@ -564,13 +559,8 @@ $(document).ready(function () {
   });
 
   $("#reset").click(function () {
-    camera.position.set(0, 0, 130);
-    camera.rotation.set(0, 0, 0);
-    camera.updateProjectionMatrix();
 
-    cameraControls.reset();
-    cameraControls.target.set(0, 5, 0);
-    cameraControls.update();
+    controlsReset();
     $("body").find(".btn-up#front").trigger("click");
     grid.visible = false;
 
@@ -680,50 +670,46 @@ $(document).ready(function () {
     applyStep();
   });
 
+  function controlsReset() {
+    cameraControls.reset();
+    cameraControls.target.set(0, 5, 0);
+    cameraControls.update();   
+  }
+
+  function changeView(visibleUp=true, visibleLow=true, rotVec=[0, 0, 0], gridUp=true, gridLow=false) {
+    controlsReset();
+
+    modelLower.visible = visibleLow;
+    modelUpper.visible = visibleUp;
+
+    modelUpper.rotation.set(...rotVec);
+    modelLower.rotation.set(...rotVec);
+
+    grid.children[3].visible = gridLow;
+    grid.children[4].visible = gridUp;
+    render();    
+  }
+
   $("body").on("click", ".btn-up#up", function () {
-    const model_lower = scene.getObjectByName("model-lower");
-    const model_upper = scene.getObjectByName("model-upper");
-
     modelUpper.add(grid);
-
-    model_lower.visible = false;
-    model_upper.visible = true;
-
-    model_upper.rotation.x = -Math.PI / 2;
-    model_lower.rotation.x = -Math.PI / 2;
-
-    grid.children[3].visible = false;
-    grid.children[4].visible = true;
-    render();
+    changeView(true, false, [-Math.PI / 2, 0, 0], true, false);
   });
 
   $("body").on("click", ".btn-up#front", function () {
-    const model_lower = scene.getObjectByName("model-lower");
-    const model_upper = scene.getObjectByName("model-upper");
-
-    model_lower.visible = true;
-    model_upper.visible = true;
-    model_upper.rotation.set(0, 0, 0);
-    model_lower.rotation.set(0, 0, 0);
-    grid.children[3].visible = false;
-    grid.children[4].visible = true;
-    render();
+    changeView();
   });
 
   $("body").on("click", ".btn-up#low", function () {
-    const model_lower = scene.getObjectByName("model-lower");
-    const model_upper = scene.getObjectByName("model-upper");
     modelLower.add(grid);
+    changeView(false, true, [Math.PI / 2, 0, 0], false, true);
+  });
 
-    model_upper.visible = false;
-    model_lower.visible = true;
-    model_lower.rotation.x = Math.PI / 2;
-    model_upper.rotation.x = Math.PI / 2;
+  $("body").on("click", ".btn-up#right", function () {
+    changeView(true, true, [0, Math.PI / 2, 0], false, true);
+  });
 
-    grid.children[3].visible = true;
-    grid.children[4].visible = false;
-
-    render();
+  $("body").on("click", ".btn-up#left", function () {
+    changeView(true, true, [0, -Math.PI / 2, 0], false, true);
   });
 
   $("body").on("click", ".btns-up #grid", function (e) {
@@ -766,7 +752,6 @@ $(document).ready(function () {
     const modal = document.querySelector(".modal-container");
     const canvas = document.getElementById("canvas");  
       modal.classList.toggle("hide");
-      console.log(modal.classList)
       canvas.classList.toggle("hide");  
       onWindowResize();   
   }

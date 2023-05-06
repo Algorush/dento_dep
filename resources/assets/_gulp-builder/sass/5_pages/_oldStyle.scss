@@ -71,6 +71,13 @@ a {
   padding: 10px;
 }
 .controls-up {
+  grid-template-columns: 80px 80px 80px;
+  grid-template-rows: 50px 50px 50px;
+  display: grid;
+  grid-template-areas:
+      ". a ."
+      "b c d"
+      ". e .";
   position: absolute;
   letter-spacing: 0;
   width: 340px;
@@ -84,9 +91,26 @@ a {
 .hide .controls-up {
   left: 50%;
 }
+.btn-up#up {
+  grid-area: a;
+}
+.btn-up#front {
+  grid-area: c;
+}
+.btn-up#low {
+  grid-area: e;
+}
+.btn-up#left {
+  grid-area: b;
+  justify-self: self-end;
+}
+.btn-up#right {
+  grid-area: d;
+  justify-self: self-end;
+}
 .btn-up {
   display: inline-block;
-  padding: 10px 15px;
+  padding: 5px 6px;
   cursor: pointer;
   width: 60px;
 }
