@@ -1,0 +1,36 @@
+{
+  "name": "webmagic/core",
+  "description": "Package with core laravel-components",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Yevhen Saienko",
+      "email": "eugen.saenko@gmail.com"
+    }
+  ],
+  "minimum-stability": "stable",
+  "require": {
+    "php": "7.3 - 8",
+    "laravel/framework": "5.5 - 9.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "6.0 - 9.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Webmagic\\Core\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Tests\\": "tests/"
+    }
+  },
+  "archive": {
+    "exclude": [
+      "/tests",
+      "test.bat",
+      "phpunit.xml"
+    ]
+  }
+}

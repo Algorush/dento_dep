@@ -1,0 +1,45 @@
+.editable{
+  &-wrap{
+    position: relative;
+  }
+  &-txt{
+    position: relative;
+    padding: 7px;
+    cursor: pointer;
+    &[data-edit-icon] {
+      padding-left: 15px;
+      &:before{
+        content: "\f044";
+        position: absolute;
+        display: block;
+        top: 0;
+        left: 0;
+        padding-top: 5px;
+        font-family: 'Font Awesome';
+        font-size: 12px;
+        font-weight: 600;
+      }
+      &:focus {
+        &:before{
+          content: '';
+        }
+      }
+    }
+  }
+  &-controls{
+    position: absolute;
+    top: -30px;
+    right: 0;
+    width: 55px;
+    padding: 5px;
+    z-index: 9999;
+  }
+  &-cnt{
+    &-btn{
+      padding: 3px;
+      font-size: 12px;
+      line-height: 1;
+      width: 20px;
+    }
+  }
+}

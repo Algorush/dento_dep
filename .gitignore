@@ -8,7 +8,6 @@ Homestead.json
 /packages
 /resources/assets/_gulp-builder/.sass-cache
 /storage/debugbar
-/vendor/
 /resources/asset/_gulp-builder/bower_components/
 /resources/asset/_gulp-builder/node_modules/
 /resources/asset/_gulp-builder/.sass-cache/

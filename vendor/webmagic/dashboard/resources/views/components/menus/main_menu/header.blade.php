@@ -1,0 +1,1 @@
+<li class="nav-header {{$item['class']}}">{!! $item['header'] !!}</li>

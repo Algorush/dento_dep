@@ -1,0 +1,10 @@
+version: '3'
+services:
+  app:
+    image: webmagicagency/node12
+    volumes:
+      -  ".:/srv/packages/dashboard"
+      - "../../../../../app:/srv/app"
+    environment:
+      - NODE_ENV=prod
+    working_dir: "/srv/packages/dashboard/resources/assets/_gulp-builder"

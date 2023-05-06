@@ -1,0 +1,104 @@
+@import 'sprite';
+@include sprites($spritesheet-sprites); //Use for sprites
+@import 'elements/elements';
+@import 'blocks/blocks';
+@import 'responsive'; 
+
+//for fine uploader
+.qq-edit-filename-icon {
+	background: url("../../img/edit.gif");
+}
+.qq-upload-spinner {
+	background: url("../../img/loading.gif");
+}
+.qq-drop-processing-spinner {
+	background: url("../../img/processing.gif");
+}
+.layout-fixed .main-sidebar-custom .sidebar-custom {
+	padding: 1.2rem .5rem;
+	text-align: center;
+}
+.sidebar-custom{
+	&-txt {
+		font-size: 1rem;
+		color: #6c757d;
+	}
+}
+.sidebar-mini.sidebar-collapse{
+	.sidebar-custom-desc{
+		display: none;
+	}
+}
+.sidebar{
+	&:hover{
+		&+.sidebar-custom {
+			.sidebar-custom-desc {
+				display: inline-block;
+			}
+		}
+	}
+}
+.layout-navbar-fixed.layout-fixed .wrapper .sidebar {
+	margin-top: calc(4.5rem + 3px);
+}
+.layout-navbar-fixed .wrapper .brand-link {
+	margin: 0 auto;
+}
+.brand-txt-l{
+	display: block;
+}
+.brand-txt-s{
+	display: none;
+}
+.brand-link .brand-link-img {
+	height: 50px;
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-position: center;
+}
+.sidebar-mini.layout-fixed.layout-navbar-fixed.sidebar-collapse {
+	.brand-link .brand-link-img {
+		height: 34px;
+	}
+	.wrapper .sidebar {
+		margin-top: calc(3.5rem + 3px);
+	}
+}
+.sidebar-mini.layout-fixed.layout-navbar-fixed.sidebar-collapse {
+	.main-sidebar {
+		&:hover {
+			.brand-link {
+				height: calc(4.5rem + 1px) !important;
+
+				.brand-link-img {
+					height: 50px !important;
+				}
+			}
+
+			.sidebar {
+				margin-top: calc(4.5rem + 3px) !important;
+			}
+			.brand-txt-l{
+				display: block;
+			}
+			.brand-txt-s{
+				display: none;
+			}
+		}
+		.brand-txt-l{
+			display: none;
+		}
+		.brand-txt-s{
+			display: block;
+		}
+	}
+}
+.brand-txt-l{
+	margin-left: .8rem!important;
+}
+.__hidden-blk {
+	display: none!important;
+}
+@media screen and (max-width: 1200px){
+
+}

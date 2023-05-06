@@ -1,0 +1,1 @@
+<td class="{!! $class !!}" {!! $dynamic_fields !!}>{!! $value !!}</td>
